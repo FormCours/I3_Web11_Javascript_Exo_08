@@ -5,28 +5,37 @@ const btnAjout = document.getElementById('btn-ajout');
 const btnValid = document.getElementById('btn-valid');
 const zoneResult = document.getElementById('result-zone');
 const form2 = document.getElementById('form-2');
-console.log(inputNomJoueur, btnAjout, btnValid,form2, zoneResult);
+const form1 = document.getElementById('form-1');
 
+console.log(inputNomJoueur, btnAjout, btnValid, form2, zoneResult);
+
+// Encodage des joueurs
 let joueurs = [];
 btnAjout.addEventListener('click', () => {
     let nomJoueurValeur = inputNomJoueur.value.toUpperCase();
-    
+
     inputNomJoueur.value = '';
-    
-    if (joueurs.includes(nomJoueurValeur)){
+
+    if (joueurs.includes(nomJoueurValeur)) {
         alert('Le nom existe déjà');
 
-    }else{
+    } else {
         joueurs.push(nomJoueurValeur);
     }
     console.table(joueurs);
-    
-
-})
-
+});
 //
+let scoreJoueur = [];
 
-btnValid.addEventListener('click', () =>{
+// Génération du formulaire de score
+btnValid.addEventListener('click', () => {
+
+    form1.classList.add('hidden');
+
+    let count = 1;
+    const NomMatch = document.createElement('h3');
+    form2.appendChild(NomMatch);
+    NomMatch.innerText = `Match n° ${count}`;
 
     for (let index = 0; index < joueurs.length; index++) {
 
@@ -35,17 +44,38 @@ btnValid.addEventListener('click', () =>{
 
         const label = document.createElement('label');
         label.innerText = joueurs[index];
-        label.setAttribute('for',`score_${joueurs[index]}`);
+        label.setAttribute('for', `score_${joueurs[index]}`);
         div.appendChild(label);
 
         const inputScore = document.createElement('input');
-        inputScore.setAttribute('id',`score_${joueurs[index]}`);
+        inputScore.setAttribute('id', `score_${joueurs[index]}`);
         inputScore.setAttribute('type', 'number');
         div.appendChild(inputScore);
-                
+
     }
+
     const btnSave = document.createElement('button');
     btnSave.innerText = 'Enregister';
     form2.appendChild(btnSave);
+
+    ///
+
+    btnSave.addEventListener('click', () => {
+        for (let k = 0; k < joueurs.length; k++) {
+
+            const inputScore = document.getElementById(`score_${joueurs[k]}`);
+            const score = inputScore.value;
+            scoreJoueur.push(score);
+            console.log(inputScore);
+
+
+        }
+        console.table(scoreJoueur);
+        count++;
+
+        NomMatch.innerText = `Match n° ${count}`;
+    });
 })
+//
+
 
