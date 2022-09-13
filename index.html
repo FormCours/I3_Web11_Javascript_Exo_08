@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="assets/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exo 08</title>
 </head>
 <body>
     <h2>Score golf</h2>
-    <div>
-        <label for = "nom-joueur">Nom du joueur</label>
-        <input id = "nom-joueur" type="text">
+    <div id="form-1">
+        <div>
+            <label for = "nom-joueur">Nom du joueur</label>
+            <input id = "nom-joueur" type="text">
+        </div>
+        <div>
+            <button id ="btn-ajout">Ajouter</button>
+            <button id = "btn-valid">Valider</button>
+        </div>
     </div>
-    <div>
-        <button id ="btn-ajout">Ajouter</button>
-        <button id = "btn-valid">Valider</button>
-    </div>
-    
+
+    <div id="form-2"></div>
+
+    <div id="result-zone"></div>
 
     <script src="./assets/script/script.js"></script>
 </body>
