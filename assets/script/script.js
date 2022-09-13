@@ -9,8 +9,11 @@ const form1 = document.getElementById('form-1');
 
 console.log(inputNomJoueur, btnAjout, btnValid, form2, zoneResult);
 
-// Encodage des joueurs
+// Les tableaux de joueurs et de scores
 let joueurs = [];
+let scoreJoueur = [];
+
+// Encodage des joueurs
 btnAjout.addEventListener('click', () => {
     let nomJoueurValeur = inputNomJoueur.value.toUpperCase();
 
@@ -21,11 +24,13 @@ btnAjout.addEventListener('click', () => {
 
     } else {
         joueurs.push(nomJoueurValeur);
+        scoreJoueur.push(0);
     }
     console.table(joueurs);
+    console.table(scoreJoueur);
 });
-//
-let scoreJoueur = [];
+
+
 
 // Génération du formulaire de score
 btnValid.addEventListener('click', () => {
@@ -58,17 +63,18 @@ btnValid.addEventListener('click', () => {
     btnSave.innerText = 'Enregister';
     form2.appendChild(btnSave);
 
-    ///
-
+    // Sauvegarde des score
     btnSave.addEventListener('click', () => {
         for (let k = 0; k < joueurs.length; k++) {
 
             const inputScore = document.getElementById(`score_${joueurs[k]}`);
-            const score = inputScore.value;
-            scoreJoueur.push(score);
-            console.log(inputScore);
+            const score = parseInt(inputScore.value);
+            // console.log(inputScore);
 
+            inputScore.value = '';
 
+            // Ajout le score dans le tableau des scores 
+            scoreJoueur[k] += score;  // scoreJoueur[k] = scoreJoueur[k] + score
         }
         console.table(scoreJoueur);
         count++;
